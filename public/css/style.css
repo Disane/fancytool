@@ -1,0 +1,16 @@
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+.container {
+    width: 80%;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+}
+#secret-key, #secret-key-verify {
+    width: 80%;
+}
+

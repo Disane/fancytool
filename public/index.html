@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" 
+          rel="stylesheet">
+
+    <!-- custom style css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Fancy AES CBC Tool</title>
+  </head>
+  <body>
+    <div class="container">            
+        <h1 class="display-3 text-center">Fancy AES-256 CBC Tool</h1> 
+        <p class="text-danger text-center">Make sure you disconnect your internet at this point, before attempting to encrypt or decrypt valuable information!</p>
+        <p class="text-muted text-center">Note that leading and trailing spaces of your text is removed automatically before processing.</p>
+        <hr class="solid">
+        <br>
+        <div class="input-group">
+          <span class="input-group-text">Plaintext</span>
+          <textarea class="form-control" type="text" name="ctext" id="ctext" aria-label="Plaintext" aria-placeholder="Your plaintext goes here ..."></textarea>
+        </div>
+        <br>
+        <br>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="secret-key" placeholder="Secret Key">
+          <label for="secret-key">Secret Key</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="secret-key-verify" placeholder="Secret Key to verify against">
+          <label for="secret-key-verify">Secret Key for Verification</label>
+        </div>
+        <br>
+        <button class="btn btn-outline-primary button-lg" id='encrypt'>Encrypt</button>
+        <button class="btn btn-outline-warning button-lg" id='decrypt'>Decrypt</button>
+        <br>
+        <br>
+        <h1 class="display-3 text-center">Info</h1>
+        <p class="text-muted text-center">Depending on what operation was done, the information presented here may vary</p>
+        <hr class="solid">
+        <br>
+
+        <div class="accordion" id="accordionEncryptedTextBase64">
+          <div class="accordion-item">
+            <h4 class="accordion-header" id="headingOneEncryptedTextBase64">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEncryptedTextBase64" aria-expanded="false" aria-controls="collapseEncryptedTextBase64">
+                Encrypted Text (Base64)
+              </button>
+            </h4>
+            <div id="collapseEncryptedTextBase64" class="accordion-collapse collapse" aria-labelledby="headingOneEncryptedTextBase64" data-bs-parent="#accordionEncryptedTextBase64">
+              <div class="accordion-body">
+                <div class="input-group">
+                  <span class="input-group-text">Encrypted Text (Base64)</span>
+                  <textarea class="form-control" type="text" name="encrypted-base64" id="encrypted-base64" aria-placeholder="encrypted text in base64 format"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="accordion" id="accordionEncryptedTextHex">
+          <div class="accordion-item">
+            <h4 class="accordion-header" id="headingOneEncryptedTextHex">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEncryptedTextHex" aria-expanded="false" aria-controls="collapseEncryptedTextHex">
+                Encrypted Text (Hex)
+              </button>
+            </h4>
+            <div id="collapseEncryptedTextHex" class="accordion-collapse collapse" aria-labelledby="headingOneEncryptedTextHex" data-bs-parent="#accordionEncryptedTextHex">
+              <div class="accordion-body">
+                <div class="input-group">
+                  <span class="input-group-text">Encrypted Text (Hex)</span>
+                  <textarea class="form-control" type="text" name="encrypted-hex" id="encrypted-hex" aria-placeholder="encrypted text in hex format"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="accordion" id="accordionTextInputRead">
+          <div class="accordion-item">
+            <h4 class="accordion-header" id="headingTextInputRead">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTextInputRead" aria-expanded="false" aria-controls="collapseTextInputRead">
+                Text Input Read As
+              </button>
+            </h4>
+            <div id="collapseTextInputRead" class="accordion-collapse collapse" aria-labelledby="headingTextInputRead" data-bs-parent="#accordionTextInputRead">
+              <div class="accordion-body">
+                <div class="input-group">
+                  <span class="input-group-text">Text Input Read As</span>
+                  <textarea class="form-control" disabled type="text" name="text-input-read" id="text-input-read" aria-placeholder="text input read"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="accordion" id="accordionTextSecretKeyRead">
+          <div class="accordion-item">
+            <h4 class="accordion-header" id="headingTextSecretKeyRead">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTextSecretKeyRead" aria-expanded="false" aria-controls="collapseTextSecretKeyRead">
+                Secret Key Read As
+              </button>
+            </h4>
+            <div id="collapseTextSecretKeyRead" class="accordion-collapse collapse" aria-labelledby="headingTextSecretKeyRead" data-bs-parent="#accordionTextSecretKeyRead">
+              <div class="accordion-body">
+                <div class="input-group">
+                  <span class="input-group-text">Secret Key Read As</span>
+                  <textarea class="form-control" disabled type="text" name="text-secret-key-read" id="text-secret-key-read" aria-placeholder="secret key read"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="accordion" id="accordionCryptoInfo">
+          <div class="accordion-item">
+            <h4 class="accordion-header" id="headingCryptoInfo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCryptoInfo" aria-expanded="false" aria-controls="collapseCryptoInfo">
+                Cryptographic Information Used
+              </button>
+            </h4>
+            <div id="collapseCryptoInfo" class="accordion-collapse collapse" aria-labelledby="headingCryptoInfo" data-bs-parent="#accordionCryptoInfo">
+              <div class="accordion-body">
+                <div id="iv">Initial Vector (IV):</div>
+                <div id="salt">Salt:</div>
+                <div id="secret-key-used">Secret Key Used:</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- scripts start here -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/crypto-js.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+
+
