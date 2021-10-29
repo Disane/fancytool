@@ -82,6 +82,25 @@
           </div>
         </div>
         <br>
+
+        <div class="accordion" id="accordionEncryptedHexQR">
+          <div class="accordion-item">
+            <h4  class="accordion-header" id="headingOneEncryptedHexQR">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEncryptedHexQR" aria-expanded="false" aria-controls="collapseEncryptedHexQR">
+                  Encrypted QR Code
+                </button>
+            </h4>
+            <div id="collapseEncryptedHexQR" class="accordion-collapse collapse" aria-labelledby="headingOneEncryptedHexQR" data-bs-parent="#accordionEncryptedHexQR">
+              <div class="accordion-body">
+                <div id="qrcode-container">
+                  <canvas id="qrcode" class="qrcode"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
         <div class="accordion" id="accordionTextInputRead">
           <div class="accordion-item">
             <h4 class="accordion-header" id="headingTextInputRead">
@@ -137,6 +156,7 @@
         </div>
     </div>
     <!-- scripts start here -->
+    <script src="js/qrious.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/crypto-js.min.js"></script>
     <script src="js/app.js"></script>

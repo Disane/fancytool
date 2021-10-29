@@ -106,6 +106,8 @@ const textToEncrypt = document.querySelector('#text-input-read');
 const textSecretKey = document.querySelector('#text-secret-key-read');
 const textBase64 = document.querySelector('#encrypted-base64');
 const textHex = document.querySelector('#encrypted-hex');
+// for creating qr code images
+const qrcodeContainer = document.getElementById("qrcode");
 
 const textIv = document.querySelector('#iv');
 const textSalt = document.querySelector('#salt');
@@ -132,7 +134,13 @@ btnEncrypt.addEventListener('click', function(event){
         var encrypted = CryptoJS.AES.encrypt(ciphertext, secretKey);
         textBase64.value = encrypted;
         textHex.value = encrypted.toString().hexEncodeUTF8();
-
+        qrcodeContainer.innerHTML = "";
+        new QRious({
+          element: qrcodeContainer,
+          size:448,
+          value: textHex.value
+        });
+        document.getElementById("qrcode-container").style.display = "block";
         // Infos:
         textIv.innerHTML = `Initial Vector (IV): ${encrypted.iv}`;
         textSalt.innerHTML = `Salt: ${encrypted.salt}`;

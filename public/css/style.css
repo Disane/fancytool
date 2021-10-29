@@ -14,3 +14,9 @@ textarea {
     width: 80%;
 }
 
+.qrcode{
+    padding: 16px;
+}
+.qrcode canvas{
+    margin: 0 auto;
+}
